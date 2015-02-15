@@ -104,6 +104,10 @@ STATIC_URL = '/static/'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_S3_SECURE_URLS = False       # use http instead of https
 AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
-AWS_S3_ACCESS_KEY_ID = env('key')     # enter your access key id
-AWS_S3_SECRET_ACCESS_KEY = env('accesskey') # enter your secret access key
-AWS_STORAGE_BUCKET_NAME = env('folder')
+AWS_S3_ACCESS_KEY_ID = env('KEY')     # enter your access key id
+AWS_S3_SECRET_ACCESS_KEY = env('ACCESSKEY') # enter your secret access key
+AWS_STORAGE_BUCKET_NAME = env('FOLDER')
+
+DEFAULT_FROM_EMAIL = env('DEFAULTMAIL')
+MANDRILL_API_KEY = env('MAILING')
+EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
