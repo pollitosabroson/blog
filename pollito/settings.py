@@ -8,6 +8,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+def env(key, default=''):
+    """Retrieves env vars and makes Python boolean replacements"""
+    val = os.getenv(key, default)
+
+    if val == 'True':
+        val = True
+    elif val == 'False':
+        val = False
+    return val
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -20,9 +30,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'l8)uzxgyrq74)ugcw24e2&+2)+szv$0f=$+l=ao*k7-a&gllj%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -63,8 +73,11 @@ WSGI_APPLICATION = 'pollito.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': env('DB_ENGINE'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
     }
 }
 
