@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'django_filters',
     'rest_framework',
     'storages',
+    'taggit',
     # apps
     'blog',
 )
