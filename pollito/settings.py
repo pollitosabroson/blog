@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     # terceros
     'django_filters',
     'rest_framework',
+    'storages',
     # apps
     'blog',
 )
@@ -99,3 +100,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_S3_SECURE_URLS = False       # use http instead of https
+AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
+AWS_S3_ACCESS_KEY_ID = env('key')     # enter your access key id
+AWS_S3_SECRET_ACCESS_KEY = env('accesskey') # enter your secret access key
+AWS_STORAGE_BUCKET_NAME = env('folder')
